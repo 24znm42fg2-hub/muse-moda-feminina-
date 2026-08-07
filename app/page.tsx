@@ -1,12 +1,44 @@
 const categorias = [
-  "Vestidos",
-  "Blusas",
-  "Calças",
-  "Conjuntos",
-  "Saias",
-  "Shorts",
-  "Calçados",
-  "Maquiagens",
+  {
+    nome: "Vestidos",
+    imagem:
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Blusas",
+    imagem:
+      "https://images.unsplash.com/photo-1564257577054-8c1a9e3c0f3f?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Calças",
+    imagem:
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Conjuntos",
+    imagem:
+      "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Saias",
+    imagem:
+      "https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Shorts",
+    imagem:
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Calçados",
+    imagem:
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    nome: "Maquiagens",
+    imagem:
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85",
+  },
 ];
 
 const produtos = [
@@ -14,31 +46,43 @@ const produtos = [
     nome: "Vestido Serena",
     categoria: "Vestidos",
     preco: "R$ 189,90",
+    imagem:
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85",
   },
   {
     nome: "Blusa Amélie",
     categoria: "Blusas",
     preco: "R$ 119,90",
+    imagem:
+      "https://images.unsplash.com/photo-1564257577054-8c1a9e3c0f3f?auto=format&fit=crop&w=900&q=85",
   },
   {
     nome: "Conjunto Muse",
     categoria: "Conjuntos",
     preco: "R$ 229,90",
+    imagem:
+      "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85",
   },
   {
     nome: "Saia Charlotte",
     categoria: "Saias",
     preco: "R$ 149,90",
+    imagem:
+      "https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
 export default function Home() {
   return (
     <main>
-      <header className="header">
-        <div className="logo">MUSE</div>
+      {/* HEADER */}
 
-        <nav>
+      <header className="site-header">
+        <a href="#" className="logo">
+          MUSE
+        </a>
+
+        <nav className="main-nav">
           <a href="#">Início</a>
           <a href="#categorias">Categorias</a>
           <a href="#destaques">Destaques</a>
@@ -53,63 +97,112 @@ export default function Home() {
         </div>
       </header>
 
+      {/* HERO */}
+
       <section className="hero">
+        <div className="hero-image" />
+
         <div className="hero-content">
-          <span>COLEÇÃO MUSE</span>
+          <span className="eyebrow">COLEÇÃO MUSE</span>
 
           <h1>
-            Seu estilo.
+            Vista sua
             <br />
-            Sua essência.
+            essência.
           </h1>
 
           <p>
-            Descubra peças escolhidas para mulheres que
-            transformam simplicidade em elegância.
+            Moda feminina pensada para mulheres que valorizam
+            elegância, delicadeza e autenticidade.
           </p>
 
-          <a href="#destaques" className="hero-button">
-            Comprar agora
-          </a>
+          <div className="hero-actions">
+            <a href="#destaques" className="primary-button">
+              Comprar agora
+            </a>
+
+            <a href="#categorias" className="text-button">
+              Explorar categorias →
+            </a>
+          </div>
         </div>
       </section>
 
+      {/* CATEGORIAS */}
+
       <section className="categories" id="categorias">
         <div className="section-heading">
-          <span>EXPLORE</span>
+          <span className="eyebrow">EXPLORE</span>
+
           <h2>Encontre seu estilo</h2>
+
+          <p>
+            Descubra peças escolhidas para acompanhar
+            cada momento da sua vida.
+          </p>
         </div>
 
         <div className="category-grid">
           {categorias.map((categoria) => (
-            <a href="#" className="category-card" key={categoria}>
-              <div className="category-image" />
-              <h3>{categoria}</h3>
-              <span>Explorar →</span>
+            <a
+              href="#destaques"
+              className="category-card"
+              key={categoria.nome}
+            >
+              <div
+                className="category-image"
+                style={{
+                  backgroundImage: `url(${categoria.imagem})`,
+                }}
+              />
+
+              <div className="category-overlay">
+                <h3>{categoria.nome}</h3>
+                <span>Explorar →</span>
+              </div>
             </a>
           ))}
         </div>
       </section>
 
+      {/* PRODUTOS */}
+
       <section className="products" id="destaques">
-        <div className="section-heading">
-          <span>SELEÇÃO MUSE</span>
-          <h2>Peças em destaque</h2>
+        <div className="section-heading product-heading">
+          <div>
+            <span className="eyebrow">SELEÇÃO MUSE</span>
+            <h2>Peças em destaque</h2>
+          </div>
+
+          <a href="#" className="text-button">
+            Ver todos →
+          </a>
         </div>
 
         <div className="product-grid">
           {produtos.map((produto) => (
             <article className="product-card" key={produto.nome}>
-              <div className="product-image">
-                <span>NOVO</span>
-                <button aria-label={`Favoritar ${produto.nome}`}>
+              <div
+                className="product-image"
+                style={{
+                  backgroundImage: `url(${produto.imagem})`,
+                }}
+              >
+                <span className="product-tag">NOVO</span>
+
+                <button
+                  className="favorite-button"
+                  aria-label={`Favoritar ${produto.nome}`}
+                >
                   ♡
                 </button>
               </div>
 
               <div className="product-info">
                 <small>{produto.categoria}</small>
+
                 <h3>{produto.nome}</h3>
+
                 <strong>{produto.preco}</strong>
               </div>
             </article>
@@ -123,9 +216,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COLEÇÃO */}
+
       <section className="collection" id="novidades">
-        <div>
-          <span>NOVA COLEÇÃO</span>
+        <div className="collection-image" />
+
+        <div className="collection-content">
+          <span className="eyebrow">NOVA COLEÇÃO</span>
+
           <h2>
             Elegância que
             <br />
@@ -137,18 +235,22 @@ export default function Home() {
             peças para cada momento.
           </p>
 
-          <a href="#" className="hero-button">
+          <a href="#destaques" className="primary-button">
             Conhecer coleção
           </a>
         </div>
       </section>
 
+      {/* NEWSLETTER */}
+
       <section className="newsletter">
-        <span>MUSE JOURNAL</span>
+        <span className="eyebrow">MUSE JOURNAL</span>
+
         <h2>Receba novidades da Muse</h2>
+
         <p>
-          Cadastre seu e-mail e fique por dentro das novas
-          coleções e novidades.
+          Cadastre seu e-mail e fique por dentro das
+          novas coleções, lançamentos e novidades.
         </p>
 
         <form>
@@ -157,36 +259,54 @@ export default function Home() {
             placeholder="Seu melhor e-mail"
             required
           />
-          <button type="submit">Cadastrar</button>
+
+          <button type="submit">
+            Cadastrar
+          </button>
         </form>
       </section>
 
+      {/* FOOTER */}
+
       <footer className="footer">
-        <div>
+        <div className="footer-brand">
           <div className="footer-logo">MUSE</div>
-          <p>Moda feminina para mulheres que têm essência.</p>
+
+          <p>
+            Moda feminina para mulheres
+            <br />
+            que têm essência.
+          </p>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4>Comprar</h4>
-          <a href="#">Novidades</a>
-          <a href="#">Vestidos</a>
-          <a href="#">Conjuntos</a>
-          <a href="#">Calçados</a>
+
+          <a href="#novidades">Novidades</a>
+          <a href="#categorias">Vestidos</a>
+          <a href="#categorias">Conjuntos</a>
+          <a href="#categorias">Calçados</a>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4>Atendimento</h4>
+
           <a href="#">Fale conosco</a>
           <a href="#">Trocas e devoluções</a>
           <a href="#">Entrega</a>
           <a href="#">Dúvidas frequentes</a>
         </div>
 
-        <div>
+        <div className="footer-column">
           <h4>Muse</h4>
+
           <a href="#">Sobre nós</a>
-          <a href="#">Instagram</a>
+          <a
+            href="https://www.instagram.com/muse__modafeminina/"
+            target="_blank"
+          >
+            Instagram
+          </a>
           <a href="#">Política de privacidade</a>
         </div>
       </footer>

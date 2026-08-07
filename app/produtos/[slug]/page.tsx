@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCarrinho } from "@/app/context/CarrinhoContext";
 
 const produto = {
   nome: "Vestido Serena",
@@ -14,17 +16,27 @@ const produto = {
 export default function ProdutoPage() {
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState("");
   const [quantidade, setQuantidade] = useState(1);
+const router = useRouter();
 
-  function adicionarSacola() {
-    if (!tamanhoSelecionado) {
-      alert("Selecione um tamanho.");
-      return;
-    }
+const { adicionarItem } = useCarrinho();
 
-    alert(
-      `${produto.nome} adicionado à sacola!\nTamanho: ${tamanhoSelecionado}\nQuantidade: ${quantidade}`
-    );
+function adicionarSacola() {
+  if (!tamanhoSelecionado) {
+    alert("Selecione um tamanho.");
+    return;
   }
+
+  adicionarItem({
+    id: 1,
+    nome: produto.nome,
+    categoria: produto.categoria,
+    preco: produto.preco,
+    tamanho: tamanhoSelecionado,
+    quantidade,
+  });
+
+  router.push("/carrinho");
+}
 
   return (
     <main className="produto-page">
