@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const categorias = [
@@ -16,6 +17,7 @@ const categorias = [
 
 const produtos = [
   {
+    slug: "vestido-serena",
     nome: "Vestido Serena",
     categoria: "Vestidos",
     preco: "R$ 189,90",
@@ -23,6 +25,7 @@ const produtos = [
       "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85",
   },
   {
+    slug: "blusa-amelie",
     nome: "Blusa Amélie",
     categoria: "Blusas",
     preco: "R$ 119,90",
@@ -30,6 +33,7 @@ const produtos = [
       "https://images.unsplash.com/photo-1564257577054-8c1a9e3c0f3f?auto=format&fit=crop&w=900&q=85",
   },
   {
+    slug: "conunto-muse",
     nome: "Conjunto Muse",
     categoria: "Conjuntos",
     preco: "R$ 229,90",
@@ -37,6 +41,7 @@ const produtos = [
       "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85",
   },
   {
+    slug: "saia-charlotte",
     nome: "Saia Charlotte",
     categoria: "Saias",
     preco: "R$ 149,90",
@@ -165,12 +170,19 @@ export default function Produtos() {
               </div>
 
               <div className="product-info">
-                <small>{produto.categoria}</small>
+  <small>{produto.categoria}</small>
 
-                <h3>{produto.nome}</h3>
+  <h3>{produto.nome}</h3>
 
-                <strong>{produto.preco}</strong>
-              </div>
+  <strong>{produto.preco}</strong>
+
+  <Link
+    href={`/produtos/${produto.slug}`}
+    className="outline-button"
+  >
+    Ver produto
+  </Link>
+</div>
             </article>
           ))}
         </div>
