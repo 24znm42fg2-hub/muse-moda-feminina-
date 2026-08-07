@@ -72,6 +72,7 @@ const produtos = [
   },
 ];
 
+import Link from "next/link";
 export default function Home() {
   return (
     <main>
@@ -117,9 +118,9 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <a href="#destaques" className="primary-button">
-              Comprar agora
-            </a>
+            <Link href="/produtos" className="primary-button">
+  Comprar agora
+</Link>
 
             <a href="#categorias" className="text-button">
               Explorar categorias →
@@ -210,9 +211,9 @@ export default function Home() {
         </div>
 
         <div className="center">
-          <a href="#" className="outline-button">
-            Ver todos os produtos
-          </a>
+          <Link href="/produtos" className="outline-button">
+  Ver todos os produtos
+</Link>
         </div>
       </section>
 
