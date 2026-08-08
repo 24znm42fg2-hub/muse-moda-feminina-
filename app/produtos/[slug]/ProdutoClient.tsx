@@ -88,7 +88,7 @@ export default function ProdutoClient({ produto }: Props) {
 >
   {produto.imagens.map((imagem, index) => (
     <img
-      key={imagem}
+      key={`${imagem}-${imagemAtual === index}`}
       src={imagem}
       alt={`${produto.nome} ${index + 1}`}
       className={`produto-imagem-slide ${
@@ -96,6 +96,7 @@ export default function ProdutoClient({ produto }: Props) {
       }`}
     />
   ))}
+  
 </div>
           </div>
         </div>
