@@ -3,8 +3,14 @@
 import Link from "next/link";
 import { useCarrinho } from "@/app/context/CarrinhoContext";
 
-export default function CarrinhoPage() {
+const imagensProdutos: Record<number, string> = {
+  1: "/images/produtos/vestido-serena-1.jpg",
+  2: "/images/produtos/blusa-amelie-1.jpg",
+  3: "/images/produtos/conjunto-muse-1.jpg",
+  4: "/images/produtos/saia-charlotte-1.jpg",
+};
 
+export default function CarrinhoPage() {
   const {
     itens,
     aumentarQuantidade,
@@ -17,35 +23,28 @@ export default function CarrinhoPage() {
     <main className="carrinho-page">
 
       <header className="carrinho-header">
-
         <Link href="/" className="carrinho-logo">
           MUSE
         </Link>
 
         <span>SUA SACOLA</span>
-
       </header>
 
       <section className="carrinho-container">
 
         <div className="carrinho-topo">
-
           <div>
-
             <span className="eyebrow">
               MUSE SHOP
             </span>
 
             <h1>Sua sacola</h1>
-
           </div>
 
           <span className="carrinho-contagem">
-
-            {itens.length} produto{itens.length !== 1 ? "s" : ""}
-
+            {itens.length} produto
+            {itens.length !== 1 ? "s" : ""}
           </span>
-
         </div>
 
         {itens.length === 0 ? (
@@ -83,7 +82,13 @@ export default function CarrinhoPage() {
                 >
 
                   <div className="carrinho-item-imagem">
-                    MUSE
+                    <img
+                      src={
+                        imagensProdutos[item.id] ||
+                        "/images/produtos/vestido-serena-1.jpg"
+                      }
+                      alt={item.nome}
+                    />
                   </div>
 
                   <div className="carrinho-item-info">
@@ -106,7 +111,10 @@ export default function CarrinhoPage() {
 
                         <button
                           onClick={() =>
-                            diminuirQuantidade(item.id, item.tamanho)
+                            diminuirQuantidade(
+                              item.id,
+                              item.tamanho
+                            )
                           }
                         >
                           −
@@ -116,7 +124,10 @@ export default function CarrinhoPage() {
 
                         <button
                           onClick={() =>
-                            aumentarQuantidade(item.id, item.tamanho)
+                            aumentarQuantidade(
+                              item.id,
+                              item.tamanho
+                            )
                           }
                         >
                           +
@@ -148,33 +159,26 @@ export default function CarrinhoPage() {
               <h2>Resumo da compra</h2>
 
               <div className="resumo-linha">
-
                 <span>Subtotal</span>
 
                 <strong>
                   R$ {subtotal.toFixed(2).replace(".", ",")}
                 </strong>
-
               </div>
 
               <div className="resumo-linha">
-
                 <span>Entrega</span>
-
                 <span>A calcular</span>
-
               </div>
 
               <div className="resumo-divisor"></div>
 
               <div className="resumo-total">
-
                 <span>Total</span>
 
                 <strong>
                   R$ {subtotal.toFixed(2).replace(".", ",")}
                 </strong>
-
               </div>
 
               <button className="finalizar-compra">
@@ -202,5 +206,4 @@ export default function CarrinhoPage() {
 
     </main>
   );
-
 }
